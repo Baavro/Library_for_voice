@@ -1,2 +1,18 @@
-stt_service/models/ct2_model
-stt_service/models/whisper-small-en-ct2-fp16
+
+# Large/binary artifacts (ignore)
+models/
+*.pt
+*.pth
+*.safetensors
+*.onnx
+*.bin
+*.ckpt
+*.tar
+*.gz
+*.zip
+*.whl
+*.mp4
+*.mov
+*.wav
+*.flac
+*.ipynb_checkpoints/
