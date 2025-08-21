@@ -1,0 +1,6 @@
+pyproject.toml
+llm_service.egg-info/PKG-INFO
+llm_service.egg-info/SOURCES.txt
+llm_service.egg-info/dependency_links.txt
+llm_service.egg-info/requires.txt
+llm_service.egg-info/top_level.txt

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orpheus-tts"
+version = "0.1.0"
+description = "Orpheus TTS client SDK"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "CodeIncubate", email = "dev@codeincubate.example" }]
+license = { text = "Proprietary" }
+dependencies = ["httpx>=0.27.0"]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tts_sdk*"]

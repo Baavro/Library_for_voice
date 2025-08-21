@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-service"
+version = "0.1.0"
+description = "LLM client (sync/async)"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "CodeIncubate" }]
+license = { text = "Proprietary" }
+dependencies = ["httpx>=0.27.0"]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["llm_sdk*"]

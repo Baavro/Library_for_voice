@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: llm-service
+Version: 0.1.0
+Summary: LLM client (sync/async)
+Author: CodeIncubate
+License: Proprietary
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: httpx>=0.27.0
