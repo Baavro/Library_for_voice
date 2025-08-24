@@ -22,7 +22,7 @@ python stt_test.py \
 
 -----------------LLM----------------------
 
-export GROQ_API_KEY=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
+export GROQ_API_KEY=""
 export GROQ_API_BASE=https://api.groq.com/openai
 python llm_test.py --chat-model llama-3.3-70b-versatile --fast-model llama-3.1-8b-instant
 
