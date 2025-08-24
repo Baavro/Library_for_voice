@@ -1,18 +1,2 @@
-
-# Large/binary artifacts (ignore)
-models/
-*.pt
-*.pth
-*.safetensors
-*.onnx
-*.bin
-*.ckpt
-*.tar
-*.gz
-*.zip
-*.whl
-*.mp4
-*.mov
-*.wav
-*.flac
-*.ipynb_checkpoints/
+stt_service/model
+snac_worker/Orpheus

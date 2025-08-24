@@ -69,7 +69,7 @@ from fastapi.responses import JSONResponse, PlainTextResponse
 from faster_whisper import WhisperModel
 from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
 
-from .config_loader import load_config
+from config_loader import load_config
 
 CFG = load_config(
     path=os.getenv("CONFIG_PATH", "stt_fallback.env"),

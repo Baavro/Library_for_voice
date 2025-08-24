@@ -1,0 +1,23 @@
+
+# Large/binary artifacts (ignore)
+models/
+*.pt
+*.pth
+*.safetensors
+*.onnx
+*.bin
+*.ckpt
+*.tar
+*.gz
+*.zip
+*.whl
+*.mp4
+*.mov
+*.wav
+*.flac
+*.ipynb_checkpoints/
+
+model/ct2_whisper_medium_en_to_myst_pf
+model/hf_whisper_medium_en_to_myst_pf
+model/ct2_whisper_small_en
+model/hf_whisper_small_en

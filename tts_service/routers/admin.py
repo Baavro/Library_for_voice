@@ -1,8 +1,8 @@
 # add import
 from fastapi import APIRouter, Request
 from fastapi.responses import PlainTextResponse, JSONResponse
-from orpheus_tts_service.config import Config
-from orpheus_tts.prom import prom_text
+from tts_service.config import Config
+from tts_sdk.prom import prom_text
 
 router = APIRouter()
 

@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: stt-sdk
+Version: 0.1.0
+Summary: Async Python SDK for the STT service (auth, retries, pooling, telemetry).
+Home-page: https://example.com/stt-sdk
+Author: Your Team
+License: MIT
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Multimedia :: Sound/Audio
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: httpx<0.29,>=0.27
+Provides-Extra: dev
+Requires-Dist: pytest>=7; extra == "dev"
+Requires-Dist: ruff>=0.4; extra == "dev"
+Requires-Dist: mypy>=1.6; extra == "dev"
+Requires-Dist: types-requests; extra == "dev"
+Dynamic: author
+Dynamic: classifier
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

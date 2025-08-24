@@ -21,3 +21,10 @@ class OrpheusTTS:
     async def close(self):
         for ep in self._endpoints:
             await ep.aclose()
+            
+    async def __aenter__(self):
+        return self
+    async def __aexit__(self, exc_type, exc, tb):
+        await self.close()
+    async def snapshots(self):
+        return [ep.snapshot() for ep in self._endpoints]

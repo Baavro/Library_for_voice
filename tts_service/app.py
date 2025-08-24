@@ -2,8 +2,8 @@ from __future__ import annotations
 import asyncio
 from fastapi import FastAPI
 from .config import Config
-from orpheus_tts.client import AsyncTTSClient
-from orpheus_tts.cluster import TTSCluster
+from tts_sdk.client import AsyncTTSClient
+from tts_sdk.cluster import TTSCluster
 from .routers import tts as tts_router, admin as admin_router
 
 def build_app() -> FastAPI:

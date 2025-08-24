@@ -15,6 +15,7 @@ from .engine_class import OrpheusModel
 app = FastAPI()
 
 # --- LLM (AWQ) config via env ---
+# MODEL_DIR = os.getenv("ORPHEUS_MODEL_PATH", "/home/ubuntu/Orpheus/Orpheus/orpheus_unsloth/hf_cache")
 MODEL_DIR = os.getenv("ORPHEUS_MODEL_PATH", "/home/ubuntu/Server/orpheus-3b-0.1-ft-awq-w4g128-zp")
 TOKENIZER_DIR = os.getenv("ORPHEUS_TOKENIZER_PATH", MODEL_DIR)
 QUANT = os.getenv("ORPHEUS_QUANTIZATION", "awq")  # "awq" | "gptq" | "bnb" | "none"
@@ -29,7 +30,7 @@ llm = OrpheusModel(
     enforce_eager=True,
     max_num_seqs=int(os.getenv("ORPHEUS_MAX_NUM_SEQS", "192")),
     # kv_cache_dtype=os.getenv("VLLM_KV_CACHE_DTYPE") or "fp8",  # e.g. "fp8" if your vLLM supports it
-    kv_cache_dtype="fp8",  # e.g. "fp8" if your vLLM supports it
+    kv_cache_dtype="fp8",  # e.g. "fp8" if your vLLM supports it (keep it off while using UNSLOTH)
     
 )
 print(f"[worker] LLM ready: {MODEL_DIR} (quant={QUANT})")
@@ -81,6 +82,7 @@ def _gpu_metrics():
 async def tts_stream(req: Request):
     body = await req.json()
     text = (body.get("text") or "").strip()
+
     voice = body.get("voice")
     params = body.get("params") or {}
     if not text:
@@ -97,6 +99,8 @@ async def tts_stream(req: Request):
 
             async def produce_audio():
                 try:
+      
+                    
                     async for audio in llm.generate_speech_async(prompt=text, voice=voice, **params):
                         await q.put(audio)
                 finally:

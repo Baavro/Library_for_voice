@@ -389,8 +389,7 @@ from faster_whisper import WhisperModel
 import pynvml
 from prometheus_client import Counter, Histogram, Gauge, generate_latest, CONTENT_TYPE_LATEST
 
-from .config_loader import load_config
-
+from config_loader import load_config
 # ── Load config (.env) ───────────────────────────────────────────────
 # Pass path via CLI env when launching uvicorn, e.g.:
 #   uvicorn stt_primary:app --port 8081 --workers 1
@@ -399,7 +398,7 @@ from .config_loader import load_config
 CFG = load_config(
     path=os.getenv("CONFIG_PATH", "stt_primary.env"),
     schema_defaults={
-        "CT2_SMALL_PATH": "/home/ubuntu/Server/Library/stt_service/models/whisper-small-en-ct2-fp16",
+        "CT2_SMALL_PATH": "model/ct2_whisper_medium_en_to_myst_pf",
         "DEVICE": "cuda",
         "DEVICE_INDEX": 0,
         "COMPUTE_TYPE": "float16",
@@ -411,7 +410,7 @@ CFG = load_config(
         "MIN_WORDS_FOR_CONF": 3,
         "FALLBACK_URL": "http://127.0.0.1:8082",
         "FALLBACK_API_KEY": "",
-        "API_KEYS": "",  # comma-separated
+        "API_KEYS": "abc123",  # comma-separated
         "RATE_LIMIT_RPS": 15.0,
         "RATE_LIMIT_BURST": 30,
         "MAX_UPLOAD_MB": 16.0,

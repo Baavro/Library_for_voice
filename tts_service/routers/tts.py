@@ -4,7 +4,7 @@ from typing import AsyncIterator
 from fastapi import APIRouter, Depends, HTTPException, status, Request
 from fastapi.responses import StreamingResponse
 
-from orpheus_tts.types import TTSRequest
+from tts_sdk.types import TTSRequest
 from ..auth import require_api_key
 from ..config import Config
 from ..rate_limiter import TokenBucket

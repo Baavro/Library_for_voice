@@ -35,63 +35,6 @@ class TTSCluster:
                 return ep
         return self.endpoints[0]
 
-    # async def generate(self, req: TTSRequest) -> AsyncIterator[TTSChunk]:
-    #     """
-    #     Routes to a good endpoint. If hedge_ttfb_ms is set, fires a backup if TTFB stalls.
-    #     Returns the *first* stream to yield data, cancels the other.
-    #     """
-    #     primary = self._pick()
-    #     backup = self._pick()
-
-    #     if not self.hedge_ttfb_ms or primary is backup:
-    #         async for c in primary.generate(req):
-    #             yield c
-    #         return
-
-    #     # Hedged
-    #     hedge_event = asyncio.Event()
-    #     async def run(ep: AsyncTTSClient, out_q: asyncio.Queue):
-    #         try:
-    #             async for c in ep.generate(req):
-    #                 await out_q.put(("chunk", c))
-    #                 hedge_event.set()
-    #             await out_q.put(("done", None))
-    #         except Exception as e:
-    #             await out_q.put(("error", e))
-
-    #     q1, q2 = asyncio.Queue(), asyncio.Queue()
-    #     t1 = asyncio.create_task(run(primary, q1))
-
-    #     # start backup later if ttfb stalls
-    #     async def watchdog():
-    #         await asyncio.sleep((self.hedge_ttfb_ms or 400)/1000)
-    #         if not hedge_event.is_set():
-    #             # Start backup
-    #             return asyncio.create_task(run(backup, q2))
-    #         return None
-
-    #     t_backup = await watchdog()
-
-    #     # Merge-first-wins
-    #     streams_done = 0
-    #     try:
-    #         while streams_done < (2 if t_backup else 1):
-    #             q = await asyncio.wait(
-    #                 {asyncio.create_task(q1.get()), asyncio.create_task(q2.get())} if t_backup else {asyncio.create_task(q1.get())},
-    #                 return_when=asyncio.FIRST_COMPLETED,
-    #             )
-    #             for fut in q[0]:
-    #                 typ, payload = fut.result()
-    #                 if typ == "chunk":
-    #                     yield payload
-    #                 elif typ == "done":
-    #                     streams_done += 1
-    #                 elif typ == "error":
-    #                     streams_done += 1
-    #     finally:
-    #         for t in [t1, t_backup]:
-    #             if t: t.cancel()
-
     async def generate(self, req: TTSRequest) -> AsyncIterator[TTSChunk]:
         primary, backup = self._pick(), self._pick()
         if not self.hedge_ttfb_ms or primary is backup:
